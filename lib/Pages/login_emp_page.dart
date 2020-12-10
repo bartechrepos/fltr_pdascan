@@ -90,7 +90,9 @@ class _LoginEmpPageState extends State<LoginEmpPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+      ),
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: Padding(
@@ -140,8 +142,7 @@ class _LoginEmpPageState extends State<LoginEmpPage>
                 elevation: 5,
                 onPressed:
                     empSerial.isNotEmpty ? () => _empLogIn(empSerial) : null,
-                padding:
-                    EdgeInsets.only(left: 32, right: 32, top: 8, bottom: 8),
+                padding: EdgeInsets.symmetric(vertical: 8, horizontal: 32),
                 child: Text(
                   "تسجيل",
                   style: TextStyle(fontSize: 22),
@@ -154,7 +155,11 @@ class _LoginEmpPageState extends State<LoginEmpPage>
                   onPressed: () async {
                     await widget.honeywellScanner.startScanner();
                   },
-                  icon: Icon(Icons.scanner),
+                  padding: EdgeInsets.symmetric(vertical: 8, horizontal: 32),
+                  icon: Icon(
+                    Icons.scanner,
+                    size: 32,
+                  ),
                   label: Text(""))
             ],
           ),
