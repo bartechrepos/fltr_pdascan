@@ -52,7 +52,7 @@ class _LoginEmpPageState extends State<LoginEmpPage>
       showSpinner = true;
     });
     await http
-        .get("${Constants.PANADEMO_API}/employees?serial=$empSerial")
+        .get("${Constants.API_URL}/employees?serial=$empSerial")
         .then((response) {
       var respEmps = json.decode(response.body) as List<dynamic>;
       var emp = EmpType.fromJson(respEmps[0]);

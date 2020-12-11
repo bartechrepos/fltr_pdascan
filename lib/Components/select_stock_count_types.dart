@@ -1,3 +1,4 @@
+import 'package:fltr_pdascan/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -17,7 +18,7 @@ class _SelectStockCountTypesState extends State<SelectStockCountTypes> {
   Future<void> _getAllTypes() async {
     await http
         .get(
-            "http://13.90.214.197:8081/hrback/public/api/Scanner/stock_count_types?company=1&branch_id=1")
+            "${Constants.IMIS_URL}/Scanner/stock_count_types?company=1&branch_id=1")
         .then((response) {
       var data = json.decode(response.body);
       print(response.body);

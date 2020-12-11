@@ -92,8 +92,7 @@ class _DeliverynoteDetialsPageState extends State<DeliverynoteDetialsPage>
       body["reviewed_by"] = currentEmp.id.toString();
 
     if (deliverynoteStatus.isNotEmpty) {
-      await http.put(
-          "${Constants.PANADEMO_API}/delivery-notes/${deliverynote.id}",
+      await http.put("${Constants.API_URL}/delivery-notes/${deliverynote.id}",
           body: body);
       Get.snackbar(
         "",
@@ -145,7 +144,7 @@ class _DeliverynoteDetialsPageState extends State<DeliverynoteDetialsPage>
     details = [];
     await http
         .get(
-            "${Constants.PANADEMO_API}/deliverynote-details?delivery_note=${deliverynote.id}")
+            "${Constants.API_URL}/deliverynote-details?delivery_note=${deliverynote.id}")
         .then((response) {
       var data = json.decode(response.body);
       setState(() {
@@ -239,7 +238,7 @@ class _DeliverynoteDetialsPageState extends State<DeliverynoteDetialsPage>
                       elevation: 5,
                       onPressed: () async {
                         await http.put(
-                            "${Constants.PANADEMO_API}/delivery-notes/${deliverynote.id}",
+                            "${Constants.API_URL}/delivery-notes/${deliverynote.id}",
                             body: {
                               "deliverynote_status": "2",
                               "booked_by": currentEmp.id.toString()

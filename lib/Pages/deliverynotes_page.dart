@@ -30,7 +30,7 @@ class _DeliverynotesPageState extends State<DeliverynotesPage> {
 
   Future<void> _getAllDeliveryNotes() async {
     deliverynotes = [];
-    await http.get("${Constants.PANADEMO_API}/delivery-notes").then((response) {
+    await http.get("${Constants.API_URL}/delivery-notes").then((response) {
       var data = json.decode(response.body);
       setState(() {
         for (Map i in data) {

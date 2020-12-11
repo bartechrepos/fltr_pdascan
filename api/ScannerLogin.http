@@ -1,0 +1,6 @@
+POST http://20.36.212.104:8080/imisback/public/api/Scanner/login
+Content-Type: application/json
+
+{
+  "username": "1001"
+}
