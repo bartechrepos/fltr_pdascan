@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../utils/constants.dart';
+
 class SelectBranch extends StatefulWidget {
   const SelectBranch({@required this.onChanged});
   final Function onChanged;
@@ -16,8 +18,7 @@ class _SelectBranchState extends State<SelectBranch> {
 
   Future<void> _getAllBranches() async {
     await http
-        .get(
-            "http://13.90.214.197:8081/hrback/public/api/imis_branches?company_id=1")
+        .get("${Constants.API_URL}/imis_branches?company_id=1")
         .then((response) {
       var data = json.decode(response.body);
       print(data);

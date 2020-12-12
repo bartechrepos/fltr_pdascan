@@ -27,12 +27,11 @@ class _LoginPageState extends State<LoginPage> {
     setState(() {
       showSpinner = true;
     });
-    await http.post("http://13.90.214.197:8081/hrback/public/api/Scanner/login",
-        body: {
-          "username": username,
-          "password": password,
-          "branch_id": branchId
-        }).then((response) {
+    await http.post("${Constants.API_URL}/Scanner/login", body: {
+      "username": username,
+      "password": password,
+      "branch_id": branchId
+    }).then((response) {
       var user = UserType.fromJson(json.decode(response.body));
       print(user.toString());
       Constants.prefs.setBool(Constants.PDASCR_LOGGED_IN, true);

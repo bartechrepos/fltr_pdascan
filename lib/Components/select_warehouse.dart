@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import '../utils/constants.dart';
+
 class SelectWarehouse extends StatefulWidget {
   const SelectWarehouse({@required this.onChanged});
   final Function onChanged;
@@ -15,10 +17,7 @@ class _SelectWarehouseState extends State<SelectWarehouse> {
   List warehouses;
 
   Future<void> _getAllWarehouses() async {
-    await http
-        .get(
-            "http://13.90.214.197:8081/hrback/public/api/imis_warehouses")
-        .then((response) {
+    await http.get("${Constants.API_URL}/imis_warehouses").then((response) {
       var data = json.decode(response.body);
       print(data);
       setState(() {

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import '../utils/constants.dart';
+
 class SelectDeliveryTypes extends StatefulWidget {
   const SelectDeliveryTypes({@required this.onChanged});
   final Function onChanged;
@@ -17,7 +19,7 @@ class _SelectDeliveryTypesState extends State<SelectDeliveryTypes> {
   Future<void> _getAllTypes() async {
     await http
         .get(
-            "http://13.90.214.197:8081/hrback/public/api/Scanner/sdelivery_types?company=1&branch_id=1")
+            "${Constants.API_URL}/Scanner/sdelivery_types?company=1&branch_id=1")
         .then((response) {
       var data = json.decode(response.body);
       print(response.body);

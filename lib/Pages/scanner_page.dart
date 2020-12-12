@@ -91,16 +91,14 @@ class _ScannerPageState extends State<ScannerPage>
   }
 
   Future<void> _sendCodes(BuildContext context) async {
-    await http.post(
-        "http://13.90.214.197:8081/hrback/public/api/Scanner/header_guid",
-        body: {
-          "company": "1",
-          "branch_id": user.branch.toString(),
-          "type": _type.toString(),
-          "type_id": _typeId,
-          "emp_id": user.guid,
-          "warehouse_id": user.currWarehouse
-        }).then((response) async {
+    await http.post("${Constants.API_URL}/Scanner/header_guid", body: {
+      "company": "1",
+      "branch_id": user.branch.toString(),
+      "type": _type.toString(),
+      "type_id": _typeId,
+      "emp_id": user.guid,
+      "warehouse_id": user.currWarehouse
+    }).then((response) async {
       if (response?.statusCode == 200) {
         var data = json.decode(response.body);
         var headGuid = data[0]['GUID'];
@@ -110,8 +108,7 @@ class _ScannerPageState extends State<ScannerPage>
           "head_guid": headGuid,
           "codes": _codes
         });
-        await http.post(
-            "http://13.90.214.197:8081/hrback/public/api/Scanner/post_codes",
+        await http.post("${Constants.API_URL}/Scanner/post_codes",
             body: body,
             headers: {'Content-type': 'application/json'}).then((response) {
           if (response.statusCode == 201) {
